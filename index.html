@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>Look at the console!</p>
+		<p>Firefox : Control-Shift-K (Command-Option-K on the Mac)</p>
+		<p>Chrome : Control-Shift-J (Command-Option-J on the Mac)</p>
+		<script src="williamstein92.Application.js"></script>
+		<script>
+			var version0 = app.resolve("Version"), version1;
+
+			app.bind("Number", function () {
+				return new Number(10);
+			});
+
+			version1 = app.resolve("Version");
+
+			console.log("Hello!");
+			console.log("Application is an IoC Container, meant to wrap your javascript application. Here are some examples.");
+			console.log("\n");
+			console.log("Application can bind classes and later resolve them.");
+			console.log("\tIf we run: app.bind(\"Version\", Version)");
+			console.log("\tand then: app.resolve(\"Version\")");
+			console.log("\twe get:");
+			console.log(version0);
+			console.log("version.toString() = " + version0);
+			console.log("");
+			console.log("Application determines the dependencies of these classes on the fly,\n and injects those dependencies into the newly constructed instance.\n These dependencies don't have to be custom classes, Application can resolve primitives, too.");
+			console.log("\tIf we look at our new `Version` object's constructor, it looks like this:");
+			console.log(version0.__proto__.constructor.toString());
+			console.log("\tMajor, minor and patch are dependencies resolved by Application.");
+			console.log("\tIf we: app.bind(\"Number\", function () { return new Number(10); })");
+			console.log("\tand then: app.resolve(\"Version\")");
+			console.log("\twe get:");
+			console.log(version1);
+			console.log("version.toString() = " + version1);
+			console.log("");
+			console.log("Try it yourself, maybe: app.resolve(\"Application\") ?");
+		</script>
+	</body>
+</html>
